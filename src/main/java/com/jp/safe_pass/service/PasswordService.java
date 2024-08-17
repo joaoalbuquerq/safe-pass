@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 public class PasswordService {
@@ -19,6 +20,12 @@ public class PasswordService {
     private void validateLength(String pass, List<String> failures) {
         if(pass != null && pass.length() < 8){
             failures.add("A senha deve possuir pelo menos 8 caracteres");
+        }
+    }
+
+    private void validateUpperCase(String pass, List<String> failures){
+        if(pass != null && !Pattern.matches(".*[A-Z].*", pass)){
+            failures.add("A senha deve possuir pelo menos uma letra maiuscula");
         }
     }
 
